@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="Example1.Role" table="role_table">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="title" column="title" type="string"/>
+
+        <!-- Связь поля users класса Role  с таблицей  users_table-->
+        <set name="users" table="users_table">
+            <key>
+                <column name="role_id" not-null="true"></column>
+            </key>
+            <one-to-many class="Example1.Users"/>
+        </set>
+    </class>
+</hibernate-mapping>
